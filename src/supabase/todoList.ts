@@ -1,20 +1,28 @@
-// lib/todo.ts
-
+import { ItodoProps } from "./ItodoProps";
 import { supabase } from "./supabaseClient";
 
 const tableName = "todos";
 
-const getTodos = async () => {
-  const { data, error } = await supabase.from(tableName).select("*");
+const getTodos = async (): Promise<ItodoProps[] | false> => {
+  try {
+    const { data } = await supabase.from(tableName).select("*");
+
+    if (data) {
+      return data;
+    } else {
+      return false;
+    }
+  } catch (error) {
+    return false;
+  }
+};
+
+const addTodo = async (id: string, task: string) => {
+  const { data, error } = await supabase.from(tableName).insert([{ id, task }]);
   return { data, error };
 };
 
-const addTodo = async (task: string) => {
-  const { data, error } = await supabase.from(tableName).insert([{ task }]);
-  return { data, error };
-};
-
-const updateTodo = async (id: number, task: string) => {
+const updateTodo = async (id: string, task: string) => {
   const { data, error } = await supabase
     .from(tableName)
     .update({ task })
@@ -22,7 +30,7 @@ const updateTodo = async (id: number, task: string) => {
   return { data, error };
 };
 
-const deleteTodo = async (id: number) => {
+const deleteTodo = async (id: string) => {
   const { data, error } = await supabase.from(tableName).delete().eq("id", id);
   return { data, error };
 };

@@ -1,9 +1,11 @@
-// pages/index.tsx
+'use client';
+
 import { useState, useEffect } from "react";
 import { getTodos, addTodo, updateTodo, deleteTodo } from "../supabase/todoList";
+import { ItodoProps } from "@/supabase/ItodoProps";
 
 export default function Home() {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState<ItodoProps[]>([]);
   const [task, setTask] = useState("");
 
   useEffect(() => {
@@ -23,12 +25,12 @@ export default function Home() {
     fetchTodos();
   };
 
-  const handleUpdateTodo = async (id: number, newTask: string) => {
+  const handleUpdateTodo = async (id: string, newTask: string) => {
     await updateTodo(id, newTask);
     fetchTodos();
   };
 
-  const handleDeleteTodo = async (id: number) => {
+  const handleDeleteTodo = async (id: string) => {
     await deleteTodo(id);
     fetchTodos();
   };
