@@ -1,13 +1,12 @@
 'use client';
 
-import { useState, useEffect } from "react";
-import { getTodos, addTodo, updateTodo, deleteTodo } from "../supabase/todoList";
-import { ItodoProps } from "@/supabase/ItodoProps";
 import { useTodos } from "./hooks/useTodos";
 import TodoForm from "./compoents/todoForm";
 
 export default function Home() {
   const { todos, setTodos }= useTodos();
+  console.log(todos);
+  
 
   // const handleUpdateTodo = async (id: string, newTask: string) => {
   //   await updateTodo(id, newTask);

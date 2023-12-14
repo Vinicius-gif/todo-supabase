@@ -1,3 +1,5 @@
+'use client'
+
 import { addTodo } from '@/supabase/todoList';
 import React from 'react'
 
