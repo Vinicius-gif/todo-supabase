@@ -4,19 +4,8 @@ import { useTodos } from "./hooks/useTodos";
 import TodoForm from "./compoents/todoForm";
 
 export default function Home() {
-  const { todos, setTodos }= useTodos();
+  const { todos }= useTodos();
   console.log(todos);
-  
-
-  // const handleUpdateTodo = async (id: string, newTask: string) => {
-  //   await updateTodo(id, newTask);
-  //   fetchTodos();
-  // };
-
-  // const handleDeleteTodo = async (id: string) => {
-  //   await deleteTodo(id);
-  //   fetchTodos();
-  // };
 
   return (
     <div>
@@ -28,7 +17,7 @@ export default function Home() {
             <input
               type="text"
               value={todo.task}
-              // onChange={(e) => handleUpdateTodo(todo.id, e.target.value)}
+              onChange={() => console.log('augh')}
             />
             <button onClick={() => console.log("click")}>Delete</button>
           </li>
