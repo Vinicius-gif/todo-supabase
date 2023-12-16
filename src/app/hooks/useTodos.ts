@@ -1,8 +1,8 @@
 'use client'
 
 import React from "react";
-import { ItodoProps } from "@/supabase/ItodoProps";
-import { getTodos } from "@/supabase/todoList";
+import { ItodoProps } from "@/types/ItodoProps";
+import { getTodos } from "@/app/libs/supabase/todoList";
 
 export function useTodos() {
   const [todos, setTodos] = React.useState<ItodoProps[]>([]);

@@ -1,10 +1,12 @@
-import { ItodoProps } from "./ItodoProps";
+import { ItodoProps } from "../../../types/ItodoProps";
 import { supabase } from "./supabaseClient";
+import { unstable_noStore as noStore, revalidatePath } from "next/cache";
 
 const tableName = "todos";
 
 const getTodos = async (): Promise<ItodoProps[] | false> => {
   try {
+    noStore();
     const { data } = await supabase.from(tableName).select("*");
 
     if (data) {
@@ -20,8 +22,10 @@ const getTodos = async (): Promise<ItodoProps[] | false> => {
 const addTodo = async (task: string): Promise<ItodoProps[] | false> => {
   try {
     const { data } = await supabase.from(tableName).insert([{ task }]);
+    revalidatePath('/')
     
     if (data) {
+      revalidatePath('/')
       return data;
     } else {
       return false;
