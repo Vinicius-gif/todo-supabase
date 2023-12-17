@@ -4,14 +4,7 @@ import { supabase } from '@/app/libs/supabase/supabaseClient';
 import { useQuery } from 'react-query';
 import TodoList from './compoents/TodoList';
 import TodoForm from './compoents/TodoForm';
-
-const fetchTasks = async () => {
-  const { data, error } = await supabase.from('todos').select('*');
-  if (error) {
-    throw error;
-  }
-  return data || [];
-};
+import { fetchTasks } from './libs/supabase/todoList';
 
 const Home = () => {
 
@@ -28,8 +21,8 @@ const Home = () => {
   }
 
   return (
-    <div>
-      <h1>Todo List</h1>
+    <div className="max-w-md mx-auto p-4 bg-white shadow-md rounded-md">
+      <h1 className="text-2xl font-bold mb-4 text-center">Todo List</h1>
       <TodoList tasks={tasks} />
       <TodoForm onAddTask={handleAddTask} />
     </div>

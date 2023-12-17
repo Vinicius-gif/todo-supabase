@@ -15,9 +15,20 @@ const TodoForm = ({ onAddTask }: TodoFormProps) => {
   };
 
   return (
-    <div>
-      <input type="text" value={task} onChange={(e) => setTask(e.target.value)} />
-      <button onClick={handleAddTask}>Add Task</button>
+    <div className="my-4">
+      <input
+        className="border border-gray-300 rounded px-4 py-2 mr-2 focus:outline-none focus:border-blue-500"
+        type="text"
+        value={task}
+        onChange={(e) => setTask(e.target.value)}
+        placeholder="Enter task"
+      />
+      <button
+        className="bg-blue-500 text-white rounded px-4 py-2 hover:bg-blue-600 focus:outline-none"
+        onClick={handleAddTask}
+      >
+        Add Task
+      </button>
     </div>
   );
 };
