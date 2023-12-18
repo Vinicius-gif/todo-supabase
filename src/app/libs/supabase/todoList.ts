@@ -1,51 +1,16 @@
-import { ItodoProps } from "../../../types/ItodoProps";
 import { supabase } from "./supabaseClient";
-import { unstable_noStore as noStore, revalidatePath } from "next/cache";
 
-const tableName = "todos";
+export const fetchTasks = async () => {
+  const { data, error } = await supabase.from('todos').select('*');
+  if (error) {
+    throw error;
+  }
+  return data || [];
+};
 
-const getTodos = async (): Promise<ItodoProps[] | false> => {
-  try {
-    noStore();
-    const { data } = await supabase.from(tableName).select("*");
-
-    if (data) {
-      return data;
-    } else {
-      return false;
-    }
-  } catch (error) {
-    return false;
+export const deleteTask = async (taskId: number) => {
+  const { error } = await supabase.from('todos').delete().eq('id', taskId);
+  if (error) {
+    throw error;
   }
 };
-
-const addTodo = async (task: string): Promise<ItodoProps[] | false> => {
-  try {
-    const { data } = await supabase.from(tableName).insert([{ task }]);
-    revalidatePath('/')
-    
-    if (data) {
-      revalidatePath('/')
-      return data;
-    } else {
-      return false;
-    }
-  } catch (error) {
-    return false;
-  }
-};
-
-const updateTodo = async (id: string, task: string) => {
-  const { data, error } = await supabase
-    .from(tableName)
-    .update({ task })
-    .eq("id", id);
-  return { data, error };
-};
-
-const deleteTodo = async (id: string) => {
-  const { data, error } = await supabase.from(tableName).delete().eq("id", id);
-  return { data, error };
-};
-
-export { getTodos, addTodo, updateTodo, deleteTodo };

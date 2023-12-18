@@ -1,25 +1,15 @@
 'use client'
 
-import React from "react";
-import { ItodoProps } from "@/types/ItodoProps";
-import { getTodos } from "@/app/libs/supabase/todoList";
+import { useQuery } from "react-query";
+import { fetchTasks } from "../libs/supabase/todoList";
 
 export function useTodos() {
-  const [todos, setTodos] = React.useState<ItodoProps[]>([]);
 
-  const fetchAndGetTodos = React.useMemo(async () => {
-    const response = await getTodos();
-    if (response) {
-      setTodos(response);
-    } else {
-      console.error(response);
-      return;
-    }
-  }, [setTodos]);
+  const { data: tasks = [], isLoading, refetch } = useQuery('todos', fetchTasks);
 
   return {
-    todos,
-    fetchAndGetTodos,
-    setTodos,
-  };
+    tasks,
+    isLoading,
+    refetch
+  }
 }
