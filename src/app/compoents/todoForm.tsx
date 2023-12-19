@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from 'react';
-import { supabase } from '../libs/supabase/supabaseClient';
-import { useTodos } from '../hooks/useTodos';
+import { useTodos } from '../../hooks/useTodos';
+import { supabase } from '@/libs/supabase/supabaseClient';
 
 const TodoForm = () => {
   const [task, setTask] = useState('');

@@ -1,7 +1,7 @@
 'use client'
 
+import { fetchTasks } from "@/libs/supabase/todoList";
 import { useQuery } from "react-query";
-import { fetchTasks } from "../libs/supabase/todoList";
 
 export function useTodos() {
 

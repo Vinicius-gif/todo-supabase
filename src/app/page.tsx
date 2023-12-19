@@ -1,8 +1,8 @@
 'use client'
 
-import TodoForm from './compoents/TodoForm';
+import TodoForm from '@/app/compoents/TodoForm';
 import TodoList from './compoents/TodoList';
-import { useTodos } from './hooks/useTodos';
+import { useTodos } from '../hooks/useTodos';
 
 const Home = () => {
 

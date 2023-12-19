@@ -1,9 +1,9 @@
 'use client'
 
 import { ItodoProps } from '@/types/ItodoProps';
-import { deleteTask } from '../libs/supabase/todoList';
-import { useTodos } from '../hooks/useTodos';
-import { supabase } from '../libs/supabase/supabaseClient';
+import { useTodos } from '../../hooks/useTodos';
+import { supabase } from '@/libs/supabase/supabaseClient';
+import { deleteTask } from '@/libs/supabase/todoList';
 
 interface TodoListProps {
   tasks: ItodoProps[];
