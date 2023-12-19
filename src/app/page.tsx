@@ -1,7 +1,7 @@
 'use client'
 
-import TodoList from './compoents/TodoList';
 import TodoForm from './compoents/TodoForm';
+import TodoList from './compoents/TodoList';
 import { useTodos } from './hooks/useTodos';
 
 const Home = () => {
