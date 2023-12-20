@@ -15,7 +15,7 @@ Os usuários devem ser capazes de:
 
 ### Links
 
-- Link direto: [link do projeto](https://carrinho-zustand.vercel.app/)
+- Link direto: [link do projeto](https://todo-supabase-one.vercel.app/)
 
 ## Construído com
 
